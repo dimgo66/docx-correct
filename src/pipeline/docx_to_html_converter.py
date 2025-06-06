@@ -11,7 +11,7 @@ import json
 import datetime
 import traceback
 from ..utils.logger_setup import setup_logging # Исправляем на setup_logging
-from ..utils.exceptions import PandocConversionError, InputFileNotFoundError, FileOperationError
+from ..utils.exceptions import PandocConversionError, InputFileNotFoundError, FileOperationError, TextProcessingError
 
 PIPELINE_STAGE_NAME = "DocxToHtmlConversion"
 
@@ -52,7 +52,6 @@ def convert_docx_to_html(input_docx_path, output_html_path, processing_dir, corr
             '--from', 'docx',
             '--to', 'html5',
             '--output', output_html_path,
-            '--embed-resources',
             '--standalone',
             '--metadata', 'title=',
             input_docx_path
