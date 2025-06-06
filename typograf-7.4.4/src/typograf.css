@@ -1,0 +1,6 @@
+@import-glob 'rules/**/*.css';
+
+.typograf-nowrap
+{
+    white-space: nowrap;
+}

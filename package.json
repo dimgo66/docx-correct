@@ -1,0 +1,8 @@
+{
+  "name": "pipeline-js-deps",
+  "version": "1.0.0",
+  "description": "JS dependencies for typografize and related tools",
+  "dependencies": {
+    "jsdom": "^26.1.0"
+  }
+} 

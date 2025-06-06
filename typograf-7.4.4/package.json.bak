@@ -1,0 +1,91 @@
+{
+  "name": "typograf",
+  "description": "The client and server typography",
+  "version": "7.4.4",
+  "author": {
+    "name": "Denis Seleznev",
+    "email": "hcodes@yandex.ru",
+    "url": "https://github.com/typograf/typograf"
+  },
+  "main": "dist/typograf.js",
+  "module": "dist/typograf.es.mjs",
+  "exports": {
+    "types": "./dist/typograf.d.ts",
+    "require": "./dist/typograf.js",
+    "import": "./dist/typograf.es.mjs"
+  },
+  "homepage": "https://github.com/typograf",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/typograf/typograf.git"
+  },
+  "keywords": [
+    "typo",
+    "text",
+    "typograf",
+    "typographer",
+    "typography"
+  ],
+  "engines": {
+    "node": ">= 4"
+  },
+  "files": [
+    "dist",
+    "docs",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/jest": "^29.5.14",
+    "@types/yargs": "^17.0.33",
+    "@typescript-eslint/eslint-plugin": "^8.32.0",
+    "@typescript-eslint/parser": "^8.32.0",
+    "cpy-cli": "^5.0.0",
+    "del-cli": "^6.0.0",
+    "eslint": "^9.26.0",
+    "globals": "^16.0.0",
+    "jest": "^29.7.0",
+    "postcss": "^8.5.3",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.0",
+    "postcss-import-ext-glob": "^2.1.1",
+    "rollup": "^4.40.2",
+    "sort-keys": "^5.1.0",
+    "ts-jest": "^29.3.2",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.0",
+    "uglify-js": "^3.19.3"
+  },
+  "scripts": {
+    "version": "node -p \"'export const PACKAGE_VERSION = \\'' + require('./package.json').version + '\\';'\" > src/version.ts",
+    "prepare": "npm run dist",
+    "clean": "del-cli dist/* build/*",
+    "benchmark": "node benchmark/benchmark.mjs",
+    "build": "npm run build:part1 && npm run build:part2",
+    "build:part1": "npm run clean && npm run version && npm run build:groups && npm run build:titles && npm run build:js",
+    "build:part2": "npm run build:es-js && npm run build:all-js && npm run build:copyright && npm run build:css",
+    "build:css": "postcss --no-map src/typograf.css -o ./build/typograf.css",
+    "build:js": "rollup --config rollup.config.mjs",
+    "build:es-js": "rollup --config rollup.config.es.mjs",
+    "build:all-js": "rollup --config rollup.config.all.mjs",
+    "build:groups": "cpy --rename=typograf.{{basename}} --flat src/groups.json build/ && node tools/groups.mjs",
+    "build:titles": "node tools/titles.mjs",
+    "build:md": "node tools/md.mjs",
+    "build:copyright": "node tools/copyright.mjs build/typograf.js build/typograf.es.mjs build/typograf.all.js",
+    "minimize:js": "uglifyjs -c -m --comments '/^!/' -O ascii_only=false ./build/typograf.js -o ./build/typograf.min.js",
+    "minimize:all-js": "uglifyjs -c -m --comments '/^!/' -O ascii_only=false ./build/typograf.all.js -o ./build/typograf.all.min.js",
+    "dist": "npm run build && npm run minimize:js && npm run minimize:all-js && npm run build:md && npm run dist:copy && npm run dist:typings",
+    "dist:copy": "cpy 'build/typograf.*' dist/",
+    "dist:typings": "cpy 'build/src/**/*.d.ts' dist/",
+    "test": "npm run build:part1 && npm run eslint && npm run unit-test",
+    "eslint": "eslint .",
+    "unit-test": "jest .",
+    "typecheck": "tsc --noEmit"
+  },
+  "typings": "./dist/typograf.d.ts"
+}

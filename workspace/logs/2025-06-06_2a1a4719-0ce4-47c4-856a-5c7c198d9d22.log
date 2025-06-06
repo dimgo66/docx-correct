@@ -1,0 +1,31 @@
+2025-06-06 10:32:21,110 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Начало нового сеанса обработки конвейера. Correlation ID: 2a1a4719-0ce4-47c4-856a-5c7c198d9d22
+2025-06-06 10:32:21,110 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Входной файл: /Volumes/Store1/Yandex.Disk.localized/www-yandex/Cursor/docx-correct/textinput/docx
+2025-06-06 10:32:21,159 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Запуск этапа: DocxToHtmlConversion
+2025-06-06 10:32:21,159 - src.pipeline.docx_to_html_converter - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Начало конвертации DOCX в HTML: /Volumes/Store1/Yandex.Disk.localized/www-yandex/Cursor/docx-correct/textinput/docx
+2025-06-06 10:32:21,292 - src.pipeline.docx_to_html_converter - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Файл успешно сконвертирован в HTML: /Volumes/Store1/Yandex.Disk.localized/www-yandex/Cursor/docx-correct/workspace/processing/2a1a4719-0ce4-47c4-856a-5c7c198d9d22/DocxToHtmlConversion/Proza Alamanov_podborka_yunost_final.html
+2025-06-06 10:32:21,421 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - [DEBUG] После этапа DocxToHtmlConversion: output_from_stage1=/Volumes/Store1/Yandex.Disk.localized/www-yandex/Cursor/docx-correct/workspace/processing/2a1a4719-0ce4-47c4-856a-5c7c198d9d22/DocxToHtmlConversion/Proza Alamanov_podborka_yunost_final.html
+2025-06-06 10:32:21,421 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - [DEBUG] Содержимое директории /Volumes/Store1/Yandex.Disk.localized/www-yandex/Cursor/docx-correct/workspace/processing/2a1a4719-0ce4-47c4-856a-5c7c198d9d22/DocxToHtmlConversion: ['DocxToHtmlConversion_SUCCESS.json', 'Proza Alamanov_podborka_yunost_final.html']
+2025-06-06 10:32:21,421 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Запуск этапа: TypografProcessorModule
+2025-06-06 10:32:21,989 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Этап TypografProcessorModule успешно завершен. Результат: /Volumes/Store1/Yandex.Disk.localized/www-yandex/Cursor/docx-correct/workspace/processing/2a1a4719-0ce4-47c4-856a-5c7c198d9d22/TypografProcessorModule/Proza Alamanov_podborka_yunost_final_typograf.html
+2025-06-06 10:32:21,990 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - [DEBUG] После этапа TypografProcessorModule: output_from_stage2_html=/Volumes/Store1/Yandex.Disk.localized/www-yandex/Cursor/docx-correct/workspace/processing/2a1a4719-0ce4-47c4-856a-5c7c198d9d22/TypografProcessorModule/Proza Alamanov_podborka_yunost_final_typograf.html
+2025-06-06 10:32:21,990 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - [DEBUG] Содержимое директории /Volumes/Store1/Yandex.Disk.localized/www-yandex/Cursor/docx-correct/workspace/processing/2a1a4719-0ce4-47c4-856a-5c7c198d9d22/TypografProcessorModule: ['Proza Alamanov_podborka_yunost_final_typograf.html', 'TypografProcessorModule_SUCCESS.json']
+2025-06-06 10:32:21,990 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Запуск этапа: LanguageToolProcessorModule
+2025-06-06 10:33:18,958 - orchestrator - ERROR - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Непредвиденная системная ошибка на этапе LanguageToolProcessorModule: name 'sys' is not defined
+Traceback (most recent call last):
+  File "/Volumes/Store1/Yandex.Disk.localized/www-yandex/Cursor/docx-correct/src/pipeline/orchestrator.py", line 189, in run_pipeline
+    output_from_stage3_report = languagetool_module.run(current_input_path, stage3_processing_dir)
+  File "/Volumes/Store1/Yandex.Disk.localized/www-yandex/Cursor/docx-correct/src/pipeline/languagetool_processor_module.py", line 90, in run
+    print(f"[LT_DEBUG] Готовимся к запуску LanguageTool. Команда: {' '.join(command)}", file=sys.stderr)
+                                                                                             ^^^
+NameError: name 'sys' is not defined. Did you forget to import 'sys'?
+2025-06-06 10:33:18,965 - orchestrator - ERROR - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Остановка конвейера после системной ошибки на этапе: LanguageToolProcessorModule
+2025-06-06 10:33:18,965 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Запуск этапа: AutocorrectProcessorModule
+2025-06-06 10:33:18,965 - orchestrator - ERROR - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Непредвиденная системная ошибка на этапе AutocorrectProcessorModule: cannot access local variable 'output_from_stage3_report' where it is not associated with a value
+Traceback (most recent call last):
+  File "/Volumes/Store1/Yandex.Disk.localized/www-yandex/Cursor/docx-correct/src/pipeline/orchestrator.py", line 222, in run_pipeline
+    output_from_stage4_html = autocorrect_module.run(current_input_path, output_from_stage3_report, stage4_processing_dir)
+                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'output_from_stage3_report' where it is not associated with a value
+2025-06-06 10:33:18,966 - orchestrator - ERROR - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - Остановка конвейера после системной ошибки на этапе: AutocorrectProcessorModule
+2025-06-06 10:33:18,966 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - [DEBUG] Содержимое OUTPUT_DIR в finally: []
+2025-06-06 10:33:18,966 - orchestrator - INFO - CORR_ID:2a1a4719-0ce4-47c4-856a-5c7c198d9d22 - [DEBUG] Пайплайн завершён (finally)

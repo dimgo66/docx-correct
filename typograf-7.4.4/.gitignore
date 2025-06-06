@@ -1,0 +1,12 @@
+dist/
+build/
+node_modules/
+.nyc_output/
+coverage/
+test/fixtures/before/*.tmp
+npm-debug.log
+benchmark/*.html
+benchmark/books/*.html
+src/version.ts
+.DS_Store
+.vscode
